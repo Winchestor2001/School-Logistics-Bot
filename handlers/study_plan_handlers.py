@@ -16,7 +16,7 @@ async def show_study_handler(message: Message):
 
 
 @router.callback_query(F.data.startswith("module"))
-async def show_module_lessons_handler(c: CallbackQuery):
+async def show_module_lessons_callback(c: CallbackQuery):
     module_id = c.data.split(":")[-1]
     modules_data = load_json("study_plan.json")
     lessons = None
@@ -30,13 +30,13 @@ async def show_module_lessons_handler(c: CallbackQuery):
 
 
 @router.callback_query(F.data == "back")
-async def back_handler(c: CallbackQuery):
+async def back_callback(c: CallbackQuery):
     await c.message.delete()
     await show_study_handler(c.message)
 
 
 @router.callback_query(F.data.startswith("lesson"))
-async def show_lesson_handler(c: CallbackQuery):
+async def show_lesson_callback(c: CallbackQuery):
     lesson_id = c.data.split(":")[-1]
     modules_data = load_json("study_plan.json")
     lesson_data = None

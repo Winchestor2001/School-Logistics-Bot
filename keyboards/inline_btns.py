@@ -46,11 +46,14 @@ async def tariff_btn(tariffs):
     return btn.as_markup()
 
 
-async def back_to_tariffs_btn():
+async def tariff_detail_btn():
     btn = InlineKeyboardBuilder()
     btn.add(
-        InlineKeyboardButton(text="🔙 Назад", callback_data=f"back_to_tariffs")
+        InlineKeyboardButton(text="💳 Приобрести тариф", callback_data="buy_tariff"),
+        InlineKeyboardButton(text="💼 Приобрести в рассрочку", callback_data="buy_tariff_installment"),
+        InlineKeyboardButton(text="🔙 Назад", callback_data="back_to_tariffs"),
     )
+    btn.adjust(1)
     return btn.as_markup()
 
 
