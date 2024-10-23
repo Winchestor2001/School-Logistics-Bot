@@ -94,5 +94,6 @@ async def email_state(message: Message, state: FSMContext):
     text = message.text
     data = await state.get_data()
     context = f"<b>Имя:</b> {data['first_name']}\n<b>Тел.номер:</b> <code>{data['phone_number']}</code>\n<b>Почта:</b> <code>{text}</code>\n<b>Способ оплаты:</b> <em>{data['tariff_status']}</em>"
-    await message.answer(text=context)
+    btn = await start_command_btn()
+    await message.answer(text=context, reply_markup=btn)
     await state.clear()
